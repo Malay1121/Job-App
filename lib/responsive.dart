@@ -34,3 +34,7 @@ double responsiveWidth(double width, BuildContext context) {
   var width1 = _mediaQuery.width / divide;
   return width1;
 }
+
+double responsiveText(double size, BuildContext context) {
+  return (responsiveHeight(size, context) + responsiveWidth(size, context)) / 2;
+}
