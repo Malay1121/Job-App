@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:job_app/constants.dart';
 import 'package:job_app/responsive.dart';
+import 'package:job_app/screens/personal_chat.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({Key? key}) : super(key: key);
@@ -264,88 +265,99 @@ class MessageTiles extends StatelessWidget {
       padding: EdgeInsets.only(
         top: responsiveHeight(30, context),
       ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: responsiveWidth(25, context),
-            backgroundImage: NetworkImage(avatar),
-          ),
-          SizedBox(
-            width: responsiveText(15, context),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                style: TextStyle(
-                  color: Color(0xFF150B3D),
-                  fontFamily: dmsans,
-                  fontWeight: FontWeight.w700,
-                  fontSize: responsiveText(14, context),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PersonalChat(
+                        image: avatar,
+                        name: name,
+                      )));
+        },
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: responsiveWidth(25, context),
+              backgroundImage: NetworkImage(avatar),
+            ),
+            SizedBox(
+              width: responsiveText(15, context),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(
+                    color: Color(0xFF150B3D),
+                    fontFamily: dmsans,
+                    fontWeight: FontWeight.w700,
+                    fontSize: responsiveText(14, context),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: responsiveHeight(6, context),
-              ),
-              Text(
-                lastMessage,
-                style: newMessages != 0
-                    ? TextStyle(
-                        color: Color(0xFF524B6B),
-                        fontFamily: dmsans,
-                        fontWeight: FontWeight.w700,
-                        fontSize: responsiveText(12, context),
-                      )
-                    : TextStyle(
-                        color: Color(0xFFAAA6B9),
-                        fontFamily: dmsans,
-                        fontWeight: FontWeight.w400,
-                        fontSize: responsiveText(12, context),
-                      ),
-              ),
-            ],
-          ),
-          Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                time,
-                style: TextStyle(
-                  color: Color(0xFFAAA6B9),
-                  fontFamily: dmsans,
-                  fontSize: responsiveText(12, context),
-                  fontWeight: FontWeight.w400,
+                SizedBox(
+                  height: responsiveHeight(6, context),
                 ),
-              ),
-              SizedBox(
-                height: responsiveHeight(9, context),
-              ),
-              newMessages == 0
-                  ? SizedBox()
-                  : Container(
-                      height: responsiveText(14, context),
-                      width: responsiveText(14, context),
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFF9228),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Center(
-                        child: Text(
-                          newMessages.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: dmsans,
-                            fontWeight: FontWeight.w600,
-                            fontSize: responsiveText(9, context),
+                Text(
+                  lastMessage,
+                  style: newMessages != 0
+                      ? TextStyle(
+                          color: Color(0xFF524B6B),
+                          fontFamily: dmsans,
+                          fontWeight: FontWeight.w700,
+                          fontSize: responsiveText(12, context),
+                        )
+                      : TextStyle(
+                          color: Color(0xFFAAA6B9),
+                          fontFamily: dmsans,
+                          fontWeight: FontWeight.w400,
+                          fontSize: responsiveText(12, context),
+                        ),
+                ),
+              ],
+            ),
+            Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  time,
+                  style: TextStyle(
+                    color: Color(0xFFAAA6B9),
+                    fontFamily: dmsans,
+                    fontSize: responsiveText(12, context),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(
+                  height: responsiveHeight(9, context),
+                ),
+                newMessages == 0
+                    ? SizedBox()
+                    : Container(
+                        height: responsiveText(14, context),
+                        width: responsiveText(14, context),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFF9228),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Center(
+                          child: Text(
+                            newMessages.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: dmsans,
+                              fontWeight: FontWeight.w600,
+                              fontSize: responsiveText(9, context),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

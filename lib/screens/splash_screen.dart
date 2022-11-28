@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:job_app/constants.dart';
 import 'package:job_app/screens/welcome_screen.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
-import 'package:splashscreen/splashscreen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
